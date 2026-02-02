@@ -22,7 +22,7 @@ class MainApplication : Application() {
         Purchases.configure(
             PurchasesConfiguration.Builder(
                 context = this,
-                apiKey = ""
+                apiKey = "goog_placeholder"
             ).build()
         )
     }
