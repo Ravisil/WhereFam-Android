@@ -23,6 +23,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun PeopleView(peopleViewModel: PeopleViewModel = koinViewModel()) {
     val peopleList by peopleViewModel.peopleList.collectAsState()
+    val isConnecting by peopleViewModel.isConnecting.collectAsState()
     var showDialog by remember { mutableStateOf(false) }
     val coroutineScope = rememberCoroutineScope()
 
@@ -39,19 +40,33 @@ fun PeopleView(peopleViewModel: PeopleViewModel = koinViewModel()) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "People",
+                text = "Pessoas",
                 style = MaterialTheme.typography.headlineMedium,
                 modifier = Modifier.weight(1f)
             )
             Icon(
                 imageVector = Icons.Default.Add,
-                contentDescription = "Add",
+                contentDescription = "Adicionar",
                 modifier = Modifier
                     .size(30.dp)
                     .clickable {
                         showDialog = true
                     }
             )
+        }
+
+        if (isConnecting) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                Spacer(modifier = Modifier.width(16.dp))
+                Text("Conectando via P2P...")
+            }
         }
 
         Box(
@@ -80,7 +95,7 @@ fun PeopleView(peopleViewModel: PeopleViewModel = koinViewModel()) {
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
-                                text = "Contact ${person.id} - ${person.name}",
+                                text = "Contato ${person.id} - ${person.name}",
                                 fontSize = 18.sp,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -134,7 +149,7 @@ fun AddPeopleDialog(onConfirm: (String) -> Unit, onDismiss: () -> Unit) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    "Add People",
+                    "Adicionar Pessoa",
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(8.dp)
                 )
@@ -142,7 +157,7 @@ fun AddPeopleDialog(onConfirm: (String) -> Unit, onDismiss: () -> Unit) {
                 OutlinedTextField(
                     value = dialogInput,
                     onValueChange = { dialogInput = it },
-                    label = { Text("Enter ID") },
+                    label = { Text("Digite o ID") },
                     modifier = Modifier
                         .fillMaxWidth()
                 )
@@ -154,7 +169,7 @@ fun AddPeopleDialog(onConfirm: (String) -> Unit, onDismiss: () -> Unit) {
                     TextButton(
                         onClick = onDismiss,
                     ) {
-                        Text("Cancel")
+                        Text("Cancelar")
                     }
 
                     TextButton(
