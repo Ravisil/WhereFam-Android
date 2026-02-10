@@ -74,12 +74,10 @@ class MainActivity : ComponentActivity() {
 
     public override fun onPause() {
         super.onPause()
-        worklet!!.suspend()
     }
 
     public override fun onResume() {
         super.onResume()
-        worklet!!.resume()
     }
 
     public override fun onDestroy() {

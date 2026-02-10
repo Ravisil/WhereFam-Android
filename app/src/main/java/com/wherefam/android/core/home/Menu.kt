@@ -44,7 +44,7 @@ fun Menu(
             containerColor = MaterialTheme.colorScheme.surfaceContainer
         ) {
             DropdownMenuItem(
-                text = { Text("People") },
+                text = { Text("Pessoas") },
                 onClick = {
                     expanded = false
                     onPeopleSelected()
@@ -52,13 +52,13 @@ fun Menu(
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Person,
-                        contentDescription = "Add Member"
+                        contentDescription = "Adicionar Membro"
                     )
                 }
             )
 
             DropdownMenuItem(
-                text = { Text("Share Your ID") },
+                text = { Text("Compartilhar seu ID") },
                 onClick = {
                     expanded = false
                     onShareIDSelected()
@@ -73,7 +73,7 @@ fun Menu(
 
             DropdownMenuItem(
                 text = {
-                    Text("Refer to friend")
+                    Text("Convidar amigo")
                 },
                 onClick = {
                     expanded = false
@@ -85,7 +85,7 @@ fun Menu(
             )
 
             DropdownMenuItem(
-                text = { Text("Rate App") },
+                text = { Text("Avaliar App") },
                 onClick = {
                     expanded = false
                     onRateAppSelected()
@@ -99,7 +99,7 @@ fun Menu(
             )
 
             DropdownMenuItem(
-                text = { Text("Support App") },
+                text = { Text("Suporte") },
                 onClick = {
                     expanded = false
                     onSupportAppSelected()
